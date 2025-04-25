@@ -37,7 +37,7 @@
       <xacro:property name="mesh" value="file://$(find ${visual_params['mesh']['package']})/${visual_params['mesh']['path']}" scope="parent"/>
     </xacro:if>
     <xacro:unless value="${force_abs_paths}">
-      <xacro:property name="mesh" value="model://ur5e/${visual_params['mesh']['path']}" scope="parent"/>
+      <xacro:property name="mesh" value="model://ur5e_vla/${visual_params['mesh']['path']}" scope="parent"/>
     </xacro:unless>
   </xacro:macro>
 

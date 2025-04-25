@@ -16,12 +16,6 @@ def generate_launch_description():
     gz_launch_path = PathJoinSubstitution([gz_sim_pkg_path, 'launch', 'gz_sim.launch.py'])
 
     return LaunchDescription([
-        # Set GZ_SIM_RESOURCE_PATH so Gazebo can find models
-        SetEnvironmentVariable(
-            name='GZ_SIM_RESOURCE_PATH',
-            value=PathJoinSubstitution([ur5e_pkg_share])
-        ),
-
         # Launch Gazebo
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(gz_launch_path),
