@@ -24,7 +24,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/base.stl</uri>
+            <uri>model://ur5e/meshes/collision/base.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -33,7 +33,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/base.dae</uri>
+            <uri>model://ur5e/meshes/visual/base.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -81,7 +81,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/shoulder.stl</uri>
+            <uri>model://ur5e/meshes/collision/shoulder.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -90,7 +90,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/shoulder.dae</uri>
+            <uri>model://ur5e/meshes/visual/shoulder.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -139,7 +139,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/upperarm.stl</uri>
+            <uri>model://ur5e/meshes/collision/upperarm.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -148,7 +148,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/upperarm.dae</uri>
+            <uri>model://ur5e/meshes/visual/upperarm.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -197,7 +197,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/forearm.stl</uri>
+            <uri>model://ur5e/meshes/collision/forearm.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -206,7 +206,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/forearm.dae</uri>
+            <uri>model://ur5e/meshes/visual/forearm.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -255,7 +255,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/wrist1.stl</uri>
+            <uri>model://ur5e/meshes/collision/wrist1.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -264,7 +264,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/wrist1.dae</uri>
+            <uri>model://ur5e/meshes/visual/wrist1.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -313,7 +313,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/wrist2.stl</uri>
+            <uri>model://ur5e/meshes/collision/wrist2.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -322,7 +322,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/wrist2.dae</uri>
+            <uri>model://ur5e/meshes/visual/wrist2.dae</uri>
           </mesh>
         </geometry>
         <material>
@@ -371,7 +371,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/collision/wrist3.stl</uri>
+            <uri>model://ur5e/meshes/collision/wrist3.stl</uri>
           </mesh>
         </geometry>
       </collision>
@@ -380,7 +380,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://meshes/ur5e/visual/wrist3.dae</uri>
+            <uri>model://ur5e/meshes/visual/wrist3.dae</uri>
           </mesh>
         </geometry>
         <material>

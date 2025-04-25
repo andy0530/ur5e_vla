@@ -3,9 +3,28 @@
 <package format="3">
   <name>ur5e_vla</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="andy@todo.todo">andy</maintainer>
-  <license>TODO: License declaration</license>
+  <description>
+    A ROS 2 Jazzy simulation environment for the UR5e robotic arm, integrating Gazebo Harmonic, YOLO-based object detection, and pi0 for natural language-driven task execution.
+  </description>
+  <maintainer email="andyjhlee0530@gmail.com">Andy Lee</maintainer>
+  <license>Apache-2.0</license>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>ros2_control</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>ros_gz_sim</exec_depend>
+  <exec_depend>ros_gz_interfaces</exec_depend>
+  <exec_depend>ros_gz_bridge</exec_depend>
+  <exec_depend>robotiq_driver</exec_depend>
+  <exec_depend>robotiq_description</exec_depend>
+  <exec_depend>robotiq_controllers</exec_depend>
+  <exec_depend>serial</exec_depend>
+
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
