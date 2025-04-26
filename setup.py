@@ -23,8 +23,9 @@ setup(
             glob(os.path.join('urdf', '**', '*.xacro'), recursive=True)),
 
         # SDF model files
-        (os.path.join('share', package_name, 'sdf'),
-            glob(os.path.join('sdf', '*.sdf'))),
+        (os.path.join('share', package_name, 'models'),
+            glob(os.path.join('models', '**', '*.sdf')) +
+            glob(os.path.join('models', '**', '*.config'))),
 
         # World files
         (os.path.join('share', package_name, 'worlds'),
