@@ -1,46 +1,60 @@
+#!/usr/bin/env python3
 from launch import LaunchDescription
-from launch_ros.actions import Node
 from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution
-from launch.substitutions import Command
+from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
+from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
-from ament_index_python.packages import get_package_share_directory
 
 
 def generate_launch_description():
-    # Paths
-    gz_sim_pkg_path = get_package_share_directory('ros_gz_sim')
-    ur5e_pkg_share = FindPackageShare('ur5e_vla')
-    urdf_xacro_path = PathJoinSubstitution([ur5e_pkg_share, 'urdf', 'ur5e.urdf.xacro'])
-    sdf_model_path = PathJoinSubstitution([ur5e_pkg_share, 'models', 'ur5e', 'model.sdf'])
-    gz_launch_path = PathJoinSubstitution([gz_sim_pkg_path, 'launch', 'gz_sim.launch.py'])
+    # Package share directories
+    ur5e_share = FindPackageShare('ur5e_vla')
+    ros_gz_share = FindPackageShare('ros_gz_sim')
+
+    # Paths to resources
+    xacro_file = PathJoinSubstitution([ur5e_share, 'urdf', 'ur5e.urdf.xacro'])
+    gz_sim_launch = PathJoinSubstitution([ros_gz_share, 'launch', 'gz_sim.launch.py'])
+    models_path = PathJoinSubstitution([ur5e_share, 'models'])
+    meshes_path = PathJoinSubstitution([ur5e_share, 'meshes'])
 
     return LaunchDescription([
-        # Set GZ_SIM_RESOURCE_PATH to find meshes
+        # Ensure Gazebo finds both models/ and meshes/ directories
         SetEnvironmentVariable(
             name='GZ_SIM_RESOURCE_PATH',
-            value=PathJoinSubstitution([ur5e_pkg_share])
+            value=[meshes_path, ':', models_path]
         ),
 
-        # Launch Gazebo
+        # Launch Gazebo Harmonic with Ogre rendering
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(gz_launch_path),
-            launch_arguments={
-                'gz_args': '--render-engine ogre'
-            }.items()
+            PythonLaunchDescriptionSource(gz_sim_launch),
+            launch_arguments={'gz_args': '--render-engine ogre'}.items()
         ),
 
-        # Spawn UR5e in simulation
+        # Publish URDF to /robot_description
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            output='screen',
+            parameters=[{
+                'robot_description': Command([
+                    FindExecutable(name='xacro'), ' ', xacro_file
+                ]),
+                'use_sim_time': True
+            }]
+        ),
+ 
+        # Spawn UR5e by reading /robot_description
         Node(
             package='ros_gz_sim',
             executable='create',
             name='spawn_ur5e',
             output='screen',
             arguments=[
+                '-topic', 'robot_description',
                 '-name', 'ur5e',
-                '-file', sdf_model_path,
                 '-x', '0', '-y', '0', '-z', '0.1'
             ]
-        )
+        ),
     ])
