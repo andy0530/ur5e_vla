@@ -34,8 +34,15 @@ setup(
             glob(os.path.join('worlds', '*.model'))),
 
         # Meshes
-        (os.path.join('share', package_name, 'meshes'),
-            glob(os.path.join('meshes', '**', '*.*'), recursive=True)),
+        (os.path.join('share', package_name, 'meshes', 'ur5e', 'visual'),
+            glob(os.path.join('meshes', 'ur5e', 'visual', '*.dae'))),
+        (os.path.join('share', package_name, 'meshes', 'ur5e', 'collision'),
+            glob(os.path.join('meshes', 'ur5e', 'collision', '*.stl'))),
+        
+        # (os.path.join('share', package_name, 'models', 'ur5e', 'meshes', 'visual'),
+        #     glob(os.path.join('meshes', 'ur5e', 'visual', '*.dae'))),
+        # (os.path.join('share', package_name, 'models', 'ur5e', 'meshes', 'collision'),
+        #     glob(os.path.join('meshes', 'ur5e', 'collision', '*.stl'))),
 
         # Config
         (os.path.join('share', package_name, 'config'),

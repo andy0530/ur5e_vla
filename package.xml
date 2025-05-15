@@ -29,5 +29,6 @@
 
   <export>
     <build_type>ament_python</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/share/ur5e_vla/models"/>
   </export>
 </package>

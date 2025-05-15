@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
 from launch import LaunchDescription
-from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription
+from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription, AppendEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution
 from launch_ros.actions import Node
@@ -20,15 +19,31 @@ def generate_launch_description():
 
     return LaunchDescription([
         # Ensure Gazebo finds both models/ and meshes/ directories
-        SetEnvironmentVariable(
+        # SetEnvironmentVariable(
+        #     name='GZ_SIM_RESOURCE_PATH',
+        #     value=models_root
+        # ),
+
+        # SetEnvironmentVariable(
+        #     name='GZ_RESOURCE_PATH',
+        #     value=models_root
+        # ),
+        AppendEnvironmentVariable(
+            name='GZ_RESOURCE_PATH',
+            value=[ur5e_share, ':'],
+        ),
+
+        AppendEnvironmentVariable(
             name='GZ_SIM_RESOURCE_PATH',
-            value=[meshes_path, ':', models_path]
+            value=[ur5e_share, ':'],
         ),
 
         # Launch Gazebo Harmonic with Ogre rendering
         IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(gz_sim_launch),
-            launch_arguments={'gz_args': '--render-engine ogre'}.items()
+            PythonLaunchDescriptionSource(
+                PathJoinSubstitution([ros_gz_share, 'launch', 'gz_sim.launch.py'])
+            ),
+            launch_arguments={'gz_args': '--render-engine ogre'}.items(),
         ),
 
         # Publish URDF to /robot_description
@@ -39,12 +54,13 @@ def generate_launch_description():
             output='screen',
             parameters=[{
                 'robot_description': Command([
-                    FindExecutable(name='xacro'), ' ', xacro_file
+                    FindExecutable(name='xacro'), ' ',
+                    xacro_file
                 ]),
                 'use_sim_time': True
             }]
         ),
- 
+
         # Spawn UR5e by reading /robot_description
         Node(
             package='ros_gz_sim',
@@ -52,8 +68,8 @@ def generate_launch_description():
             name='spawn_ur5e',
             output='screen',
             arguments=[
+                '-entity', 'ur5e',
                 '-topic', 'robot_description',
-                '-name', 'ur5e',
                 '-x', '0', '-y', '0', '-z', '0.1'
             ]
         ),
