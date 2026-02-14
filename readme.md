@@ -1,9 +1,15 @@
 # UR5e_VLA
 
-This repository is a work in progress. It contains resources and code related to the UR5e robotic arm and its integration with ROS 2.
+⚠️ This repository is no longer actively developed.
 
-Stay tuned for updates as development continues!
+All ongoing development, updates, and documentation have been moved to:
+
+👉 [Task Aware Robotics Perception](https://github.com/andy0530/task-aware-robotic-perception)
+
+Please refer to the new repository.
+
+---
 
 ## Disclaimer
 
-This project is under active development. Features and documentation may change frequently.
+This repository is retained for archival purposes only.
